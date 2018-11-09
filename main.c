@@ -2,12 +2,17 @@
 #include <stdlib.h>
 #include <signal.h>
 #include <unistd.h>
+#include <fcntl.h>
+#include <string.h>
 
 static void sighandler(int signo) {
 	if(signo == SIGUSR1){
 		printf("Current parent process ID: %d\n", getppid());
   }
   if(signo == SIGINT){
+		int text_file = open("signal.txt", O_WRONLY | O_APPEND);
+		write(text_file, "The process ended due to SIGINT.", strlen("The process ended due to SIGINT."));
+		close(text_file);
     printf("The process ended due to SIGINT.\n");
     exit(0);
   }
