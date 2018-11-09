@@ -13,7 +13,7 @@ static void sighandler(int signo) {
 		int text_file = open("signal.txt", O_WRONLY | O_APPEND);
 		write(text_file, "The process ended due to SIGINT.", strlen("The process ended due to SIGINT."));
 		close(text_file);
-    printf("The process ended due to SIGINT.\n");
+    printf("File has been written to! The process ended due to SIGINT.\n");
     exit(0);
   }
 }
